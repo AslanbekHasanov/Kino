@@ -1,4 +1,6 @@
-﻿using Kino.Api.Repository;
+﻿using Kino.Api.Model;
+using Kino.Api.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
 
@@ -22,6 +24,19 @@ namespace Kino.Api.Controllers
 
             return Ok(res);
 
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddMoveis([FromForm]Moveis moveis )
+        {
+            await _service.AddMoveisAsync(moveis);
+            return Ok(moveis);
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> SetImage(int id, IFormFile file)
+        {
+             var res = await _service.SetImageAsync(id, file);
+            return Ok(res);
         }
     }
 
