@@ -18,6 +18,12 @@ namespace Kino.Api.Controllers
             _service = service;
         }
         [HttpGet]
+        public async Task<IActionResult> GetMoveis(int moveiId)
+        {
+            var res = await _service.GetByIdMoveisAsync(moveiId);
+            return Ok(res);
+        }
+        [HttpGet]
         public async Task<IActionResult> GetAllMoveis()
         {
             var res = await _service.GetAllMoveisAsync();
@@ -38,6 +44,7 @@ namespace Kino.Api.Controllers
              var res = await _service.SetImageAsync(id, file);
             return Ok(res);
         }
+
     }
 
 }
