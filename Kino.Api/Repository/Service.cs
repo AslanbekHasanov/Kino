@@ -38,6 +38,12 @@ namespace Kino.Api.Repository
             }
             return res;
         }
+            
+        public async Task<Moveis> GetByIdMoveisAsync(int moveisId)
+        {
+            var moveis = await _kinoDb.Moveiss.FirstOrDefaultAsync(p => p.Id == moveisId);
+            return moveis;
+        }
 
         public async Task<Moveis> SetImageAsync(int moveisId, IFormFile file)
         {
